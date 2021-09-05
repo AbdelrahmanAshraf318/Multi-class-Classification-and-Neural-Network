@@ -42,8 +42,10 @@ hypothesis = sigmoid(z);%5 * 1
 
 J = (1/m) * ( (- y' * log(hypothesis)) - (1 - y)' * log(1 - hypothesis) ) + (lambda/(2 * m)) * sum(theta(2:end) .^ 2);
 
+shift_theta = theta(2:end);
+theta_reg = [0;shift_theta];
 
-
+grad = (1/m) * (X' * (hypothesis - y) + lambda * theta_reg);
 
 
 
