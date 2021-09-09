@@ -9,6 +9,7 @@ num_labels = size(Theta2, 1);
 
 % You need to return the following variables correctly 
 p = zeros(size(X, 1), 1);
+X = [ones(m, 1) X];
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
@@ -21,12 +22,15 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+Z_2 = X * Theta1';
+a_2 = sigmoid(Z_2); %This compute the hidden layer (Vectorization)
+a_2 = [ones(m, 1) a_2];
 
+Z_3 = a_2 * Theta2';
 
-
-
-
-
+predict = sigmoid(Z_3);
+[predict_max , index_max] = max(predict , [] , 2);
+p = index_max;
 
 
 % =========================================================================
